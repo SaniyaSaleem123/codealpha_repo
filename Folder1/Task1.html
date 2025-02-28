@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fairy Tales Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a18cd1);
+            background-size: 400% 400%;
+            animation: gradientAnimation 15s ease infinite;
+            color: #fff;
+        }
+
+        @keyframes gradientAnimation {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .navbar {
+            width: 100%;
+            padding: 15px 0;
+            background: rgba(238, 72, 155, 0.945);
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .gallery-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .gallery {
+            position: relative;
+            width: 600px;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            display: none;
+            transition: opacity 0.5s ease-in-out;
+            border-radius: 10px;
+        }
+
+        .gallery img.active {
+            display: block;
+            opacity: 1;
+        }
+
+        .buttons {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+        }
+
+        .buttons button {
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background 0.3s;
+        }
+
+        .buttons button:hover {
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .thumbnails {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            gap: 5px;
+            margin-top: 10px;
+            max-width: 720px;
+        }
+
+        .thumbnails img {
+            width: 100%;
+            height: 50px;
+            cursor: pointer;
+            border-radius: 5px;
+            object-fit: cover;
+            transition: transform 0.3s, border 0.3s;
+        }
+
+        .thumbnails img:hover, .thumbnails img.active {
+            transform: scale(1.1);
+            border: 3px solid #df75ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        WELCOME TO FAIRY TALES
+    </div>
+
+    <div class="gallery-container">
+        <div class="gallery">
+            <img src="image1.jpg" class="active" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+            <img src="image4.jpg" alt="Image 4">
+            <img src="image5.jpg" alt="Image 5">
+            <img src="image6.jpg" alt="Image 6">
+            <img src="image7.jpg" alt="Image 7">
+            <img src="image8.jpg" alt="Image 8">
+            <img src="image9.jpg" alt="Image 9">
+            <img src="image10.jpg" alt="Image 10">
+            <img src="image11.jpg" alt="Image 11">
+            <img src="image12.jpg" alt="Image 12">
+            <img src="image13.jpg" alt="Image 13">
+            <img src="image14.jpg" alt="Image 14">
+            <img src="image15.jpg" alt="Image 15">
+            <img src="image16.jpg" alt="Image 16">
+            <img src="image17.jpg" alt="Image 17">
+            <img src="image18.jpg" alt="Image 18">
+            <img src="image19.jpg" alt="Image 19">
+            <img src="image20.jpg" alt="Image 20">
+
+            <div class="buttons">
+                <button onclick="prevImage()">&#10094;</button>
+                <button onclick="nextImage()">&#10095;</button>
+            </div>
+        </div>
+
+        <div class="thumbnails">
+            <img src="image1.jpg" onclick="selectImage(0)" class="active" alt="Thumb 1">
+            <img src="image2.jpg" onclick="selectImage(1)" alt="Thumb 2">
+            <img src="image3.jpg" onclick="selectImage(2)" alt="Thumb 3">
+            <img src="image4.jpg" onclick="selectImage(3)" alt="Thumb 4">
+            <img src="image5.jpg" onclick="selectImage(4)" alt="Thumb 5">
+            <img src="image6.jpg" onclick="selectImage(5)" alt="Thumb 6">
+            <img src="image7.jpg" onclick="selectImage(6)" alt="Thumb 7">
+            <img src="image8.jpg" onclick="selectImage(7)" alt="Thumb 8">
+            <img src="image9.jpg" onclick="selectImage(8)" alt="Thumb 9">
+            <img src="image10.jpg" onclick="selectImage(9)" alt="Thumb 10">
+            <img src="image11.jpg" onclick="selectImage(10)" alt="Thumb 11">
+            <img src="image12.jpg" onclick="selectImage(11)" alt="Thumb 12">
+            <img src="image13.jpg" onclick="selectImage(12)" alt="Thumb 13">
+            <img src="image14.jpg" onclick="selectImage(13)" alt="Thumb 14">
+            <img src="image15.jpg" onclick="selectImage(14)" alt="Thumb 15">
+            <img src="image16.jpg" onclick="selectImage(15)" alt="Thumb 16">
+            <img src="image17.jpg" onclick="selectImage(16)" alt="Thumb 17">
+            <img src="image18.jpg" onclick="selectImage(17)" alt="Thumb 18">
+            <img src="image19.jpg" onclick="selectImage(18)" alt="Thumb 19">
+            <img src="image20.jpg" onclick="selectImage(19)" alt="Thumb 20">
+        </div>
+    </div>
+
+    <script>
+        let currentIndex = 0;
+        const images = document.querySelectorAll('.gallery img');
+        const thumbnails = document.querySelectorAll('.thumbnails img');
+
+        function showImage(index) {
+            images.forEach((img, i) => {
+                img.classList.remove('active');
+                thumbnails[i].classList.remove('active');
+            });
+
+            images[index].classList.add('active');
+            thumbnails[index].classList.add('active');
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            showImage(currentIndex);
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            showImage(currentIndex);
+        }
+
+        function selectImage(index) {
+            currentIndex = index;
+            showImage(currentIndex);
+        }
+    </script>
+
+</body>
+</html>
