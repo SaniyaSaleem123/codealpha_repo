@@ -1,1 +1,153 @@
-//Task4
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Player</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .navbar {
+            width: 100%;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            position: fixed;
+            top: 0;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .music-player {
+            text-align: center;
+            background: #222;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: white;
+            width: 350px;
+            margin-top: 60px; 
+        }
+
+        .controls button {
+            font-size: 24px;
+            padding: 12px;
+            margin: 8px;
+            cursor: pointer;
+            border: none;
+            background: #444;
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .controls button:hover {
+            background: #666;
+        }
+
+        #progress-bar {
+            width: 100%;
+            margin-top: 15px;
+            cursor: pointer;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">MUSIC PLAYER</div>
+
+    <div class="music-player">
+        <h2 id="song-title">Loading...</h2>
+        <audio id="audio-player" preload="metadata"></audio>
+        
+        <div class="controls">
+            <button id="prev">⏮</button>
+            <button id="play">▶</button>
+            <button id="next">⏭</button>
+        </div>
+
+        <input type="range" id="progress-bar" value="0">
+    </div>
+
+    <script>
+        const audioPlayer = document.getElementById("audio-player");
+        const playButton = document.getElementById("play");
+        const prevButton = document.getElementById("prev");
+        const nextButton = document.getElementById("next");
+        const progressBar = document.getElementById("progress-bar");
+        const songTitle = document.getElementById("song-title");
+
+        const songs = [
+            { title: "Song 1", src: "song1.mp3" },
+            { title: "Song 2", src: "song2.mp3" }
+        ];
+
+        let currentSongIndex = 0;
+
+        function loadSong(index) {
+            audioPlayer.src = songs[index].src;
+            songTitle.innerText = songs[index].title;
+            audioPlayer.load();
+        }
+
+        function playPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+                playButton.innerText = "⏸";
+            } else {
+                audioPlayer.pause();
+                playButton.innerText = "▶";
+            }
+        }
+
+        function nextSong() {
+            currentSongIndex = (currentSongIndex + 1) % songs.length;
+            loadSong(currentSongIndex);
+            audioPlayer.play();
+            playButton.innerText = "⏸";
+        }
+
+        function prevSong() {
+            currentSongIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+            loadSong(currentSongIndex);
+            audioPlayer.play();
+            playButton.innerText = "⏸";
+        }
+
+        audioPlayer.addEventListener("timeupdate", () => {
+            if (!isNaN(audioPlayer.duration)) {
+                progressBar.value = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            }
+        });
+
+        audioPlayer.addEventListener("ended", nextSong);
+
+        playButton.addEventListener("click", playPause);
+        nextButton.addEventListener("click", nextSong);
+        prevButton.addEventListener("click", prevSong);
+        progressBar.addEventListener("input", () => {
+            audioPlayer.currentTime = (progressBar.value / 100) * audioPlayer.duration;
+        });
+
+        loadSong(currentSongIndex);
+    </script>
+
+</body>
+</html>
+
